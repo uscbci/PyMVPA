@@ -22,8 +22,11 @@ print "D: PYTHONPATHs", '\n   '.join([]+sys.path)
 
 # We need to know sphinx version for decisions below
 import sphinx
-from distutils.version import LooseVersion
-sphinx_version = LooseVersion(sphinx.__version__)
+from packaging.version import Version
+#from distutils.version import LooseVersion
+#sphinx_version = LooseVersion(sphinx.__version__)
+sphinx_version = Version(sphinx.__version__)
+
 
 from mvpa2.base import externals
 

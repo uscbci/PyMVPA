@@ -19,7 +19,8 @@ import subprocess
 
 from mvpa2.base import warning
 from mvpa2 import cfg
-from mvpa2.misc.support import SmartVersion
+#from mvpa2.misc.support import SmartVersion
+from packaging.version import Version
 
 if __debug__:
     from mvpa2.base import debug
@@ -55,7 +56,8 @@ def __assign_numpy_version():
     """Check if numpy is present (it must be) an if it is -- store its version
     """
     import numpy as np
-    versions['numpy'] = SmartVersion(np.__version__)
+    #versions['numpy'] = SmartVersion(np.__version__)
+    versions['numpy'] = Version(np.__version__).base_version
 
 def __check_numpy_correct_unique():
     """ndarray.unique fails to operate on heterogeneous object ndarrays
@@ -77,7 +79,8 @@ def __assign_scipy_version():
         warnings.simplefilter('default', DeprecationWarning)
         raise
     warnings.simplefilter('default', DeprecationWarning)
-    versions['scipy'] = SmartVersion(sp.__version__)
+    #versions['scipy'] = SmartVersion(sp.__version__)
+    versions['scipy'] = Version(sp.__version__).base_version
 
 def __check_scipy():
     """Check if scipy is present an if it is -- store its version
@@ -131,7 +134,8 @@ def __assign_mdp_version():
         # can't be sure if that was already released version, since
         # mdp guys didn't use -dev suffix
         ver += '-dev'
-    versions['mdp'] = SmartVersion(ver)
+    #versions['mdp'] = SmartVersion(ver)
+    versions['mdp'] = Version(ver).base_version
 
 def __assign_nibabel_version():
     try:
@@ -146,7 +150,8 @@ def __assign_nibabel_version():
                     "report as N/A")
             raise ImportError("Fail to import nibabel due to %s" % e_str)
         raise
-    versions['nibabel'] = SmartVersion(nibabel.__version__)
+    #versions['nibabel'] = SmartVersion(nibabel.__version__)
+    versions['nibabel'] = Version(nibabel.__version__).base_version
 
 def __check_pywt(features=None):
     """Check for available functionality within pywt
@@ -246,8 +251,9 @@ def __assign_skl_version():
             raise ImportError("Verify your installation of scikits.learn. Its "
                               "docstring is empty -- could be that only -lib "
                               "was installed without the native Python modules")
-    versions['skl'] = SmartVersion(skl.__version__)
-
+    #versions['skl'] = SmartVersion(skl.__version__)
+    versions['skl'] = Version(skl.__version__).base_version
+    
 def __check_scipy_weave():
     """Apparently presence of scipy is not sufficient since some
     versions experience problems. E.g. in Sep,Oct 2008 lenny's weave
@@ -376,7 +382,8 @@ def __assign_ipython_version():
         except:
             pass
         pass
-    versions['ipython'] = SmartVersion(ipy_version)
+    #versions['ipython'] = SmartVersion(ipy_version)
+    versions['ipython'] = Version(ipy_version).base_version
 
 def __check_openopt():
     m = None
@@ -414,7 +421,8 @@ def _set_matplotlib_backend():
 def __assign_matplotlib_version():
     """Check for matplotlib version and set backend if requested."""
     import matplotlib
-    versions['matplotlib'] = SmartVersion(matplotlib.__version__)
+    #versions['matplotlib'] = SmartVersion(matplotlib.__version__)
+    versions['matplotlib'] = Version(matplotlib.__version__).base_version
     _set_matplotlib_backend()
 
 def __check_pylab():
@@ -455,7 +463,9 @@ def __check_griddata():
 
 def __check_reportlab():
     import reportlab as rl
-    versions['reportlab'] = SmartVersion(rl.Version)
+    #versions['reportlab'] = SmartVersion(rl.Version)
+    versions['reportlab'] = Version(rl.Version).base_version
+
 
 def __check(name, a='__version__'):
     exec "import %s" % name
@@ -475,13 +485,13 @@ def __check(name, a='__version__'):
         except Exception as e:
             # and if all that failed -- just assign '0'
             v = '0'
-    versions[topmodname] = SmartVersion(v)
+    versions[topmodname] = Version(v).base_version
     return True  # we did manage to import it -- so it is there
 
 def __check_h5py():
     __check('h5py', 'version.version')
     import h5py
-    versions['hdf5'] = SmartVersion(h5py.version.hdf5_version)
+    versions['hdf5'] = Version(h5py.version.hdf5_version).base_version
 
 def __check_rpy():
     """Check either rpy is available and also set it for the sane execution
@@ -514,7 +524,7 @@ def __check_rpy2():
     """Check either rpy2 is available and also set it for the sane execution
     """
     import rpy2
-    versions['rpy2'] = SmartVersion(rpy2.__version__)
+    versions['rpy2'] = Version(rpy2.__version__).base_version
 
     import rpy2.robjects
     r = rpy2.robjects.r

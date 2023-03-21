@@ -116,6 +116,8 @@ ext_modules = [smlrc_ext]
 if bind_libsvm:
     ext_modules.append(libsvmc_ext)
 
+print(ext_modules)
+
 # Notes on the setup
 # Version scheme is: major.minor.patch<suffix>
 

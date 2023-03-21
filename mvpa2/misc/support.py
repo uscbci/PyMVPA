@@ -20,7 +20,8 @@ import sys
 
 from itertools import product
 # for SmartVersion
-from distutils.version import Version
+#from distutils.version import Version
+from packaging.version import Version
 
 import numpy as np
 #import numpy.random as npr
