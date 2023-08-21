@@ -357,7 +357,7 @@ class RangeElementSelector(ElementSelector):
             else:
                 selected = seq > lower
         else:
-            selected = np.ones( (len_seq), dtype=np.bool )
+            selected = np.ones( (len_seq), dtype=bool )
 
         if upper is not None:
             if self.__inclusive:

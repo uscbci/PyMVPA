@@ -592,7 +592,7 @@ def fit_event_hrf_model(
     regressor_names = model_params.sa[glm_condition_attr].value
     condition_regressors = np.array([v in glm_condition_attr_map.values()[0]
                                      for v in regressor_names])
-    assert(condition_regressors.dtype == np.bool)
+    assert(condition_regressors.dtype == bool)
     if not np.all(condition_regressors):
         # some regressors do not correspond to conditions and would need
         # to be taken into a separate dataset

@@ -142,7 +142,7 @@ class AttributePermutator(Node):
                 pa.value = pa.value.copy()
 
             for limit_value in np.unique(limit_filter):
-                if limit_filter.dtype == np.bool:
+                if limit_filter.dtype == bool:
                     # simple boolean filter -> do nothing on False
                     if not limit_value:
                         continue

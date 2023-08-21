@@ -168,7 +168,7 @@ class AttributeMap(object):
                         % (str(ua), str(mkeys)))
 
 
-        num = np.empty(attr.shape, dtype=np.int)
+        num = np.empty(attr.shape, dtype=int)
         for k, v in self._nmap.iteritems():
             num[attr == k] = v
         return num

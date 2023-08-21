@@ -504,12 +504,12 @@ class CombinedFeatureSelection(FeatureSelection):
         # two major modes
         if method == 'union':
             # slice mask default: take none
-            mask = np.zeros(ds.shape[1], dtype=np.bool)
+            mask = np.zeros(ds.shape[1], dtype=bool)
             # method: OR
             cfunc = np.logical_or
         elif method == 'intersection':
             # slice mask default: take all
-            mask = np.ones(ds.shape[1], dtype=np.bool)
+            mask = np.ones(ds.shape[1], dtype=bool)
             # method: AND
             cfunc = np.logical_and
         else:
@@ -519,7 +519,7 @@ class CombinedFeatureSelection(FeatureSelection):
             # first: train all embedded selections
             fs.train(ds)
             # now get boolean mask of selections
-            fsmask = np.zeros(mask.shape, dtype=np.bool)
+            fsmask = np.zeros(mask.shape, dtype=bool)
             # use slicearg to select features
             fsmask[fs._slicearg] = True
             # merge with current global mask

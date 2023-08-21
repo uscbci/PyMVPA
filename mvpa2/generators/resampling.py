@@ -112,7 +112,7 @@ class Balancer(Node):
 
         # for each chunk in the filter (might be just the selected ones)
         for limit_value in np.unique(limit_filter):
-            if limit_filter.dtype == np.bool:
+            if limit_filter.dtype == bool:
                 # simple boolean filter -> do nothing on False
                 if not limit_value:
                     continue
@@ -159,14 +159,14 @@ class Balancer(Node):
         # the right collection of the output dataset
         if self._include_offlimit:
             # start with all-in
-            battr = np.ones(len(attr), dtype=np.bool)
+            battr = np.ones(len(attr), dtype=bool)
             # throw out all samples that could have been limited
             battr[full_limit_set] = False
             # put back the ones that got into the balanced set
             battr[balanced_set] = True
         else:
             # start with nothing
-            battr = np.zeros(len(attr), dtype=np.bool)
+            battr = np.zeros(len(attr), dtype=bool)
             # only keep the balanced set
             battr[balanced_set] = True
 

@@ -238,7 +238,7 @@ def flat_surface2grid_mask(surface, min_nsteps, max_deformation):
             for i, j in segments:
                 if ypos < (y[j] - y[i]) * (xpos - x[i]) / (x[j] - x[i]) + y[i]:
                     c = not c
-            msk[jj, ii] = np.bool(c)
+            msk[jj, ii] = bool(c)
 
     return x, y, msk, xi, yi
 

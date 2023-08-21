@@ -279,7 +279,7 @@ def test_value2idx():
 def test_limit_filter():
     ds = datasets['uni2small']
     assert_array_equal(get_limit_filter(None, ds.sa),
-                       np.ones(len(ds), dtype=np.bool))
+                       np.ones(len(ds), dtype=bool))
     assert_array_equal(get_limit_filter('chunks', ds.sa),
                        ds.sa.chunks)
     assert_array_equal(get_limit_filter({'chunks': 3}, ds.sa),
